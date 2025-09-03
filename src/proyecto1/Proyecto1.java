@@ -100,6 +100,50 @@ public class Proyecto1 {
         System.out.println("Producto agregado correctamente.");
         registrarBitacora("AGREGAR PRODUCTO", true);
     }
+    
+    static void buscarProducto() {
+        System.out.println("\n--- Buscar Producto ---");
+        System.out.println("Buscar por: 1. Código  2. Nombre  3. Categoría");
+        System.out.print("Seleccione: ");
+        int tipo = leerEntero();
+        boolean encontrado = false;
+        switch (tipo) {
+            case 1:
+                System.out.print("Código: ");
+                String codigo = sc.nextLine().trim();
+                int idx = buscarIndiceProductoPorCodigo(codigo);
+                if (idx != -1) {
+                    System.out.println("Encontrado: " + inventario[idx]);
+                    encontrado = true;
+                }
+                break;
+            case 2:
+                System.out.print("Nombre del producto: ");
+                String nombre = sc.nextLine().trim().toLowerCase();
+                for (int i = 0; i < numProductos; i++) {
+                    if (inventario[i].nombre.toLowerCase().contains(nombre)) {
+                        System.out.println(inventario[i]);
+                        encontrado = true;
+                    }
+                }
+                break;
+            case 3:
+                System.out.print("Categoría: ");
+                String categoria = sc.nextLine().trim().toLowerCase();
+                for (int i = 0; i < numProductos; i++) {
+                    if (inventario[i].categoria.toLowerCase().equals(categoria)) {
+                        System.out.println(inventario[i]);
+                        encontrado = true;
+                    }
+                }
+                break;
+            default:
+                System.out.println("Opción de búsqueda inválida.");
+        }
+        if (!encontrado) System.out.println("No se encontraron coincidencias.");
+        registrarBitacora("BUSCAR", encontrado);
+}
+
 
     static void verDatosEstudiante() {
         System.out.println("\n--- Datos del Estudiante ---");
@@ -161,7 +205,7 @@ public class Proyecto1 {
         }
     }
 
-    static String fechaHoraHumana() {
+    static String fechaHora() {
         java.time.LocalDateTime now = java.time.LocalDateTime.now();
         return String.format("%02d/%02d/%04d %02d:%02d:%02d",
                 now.getDayOfMonth(), now.getMonthValue(), now.getYear(),
