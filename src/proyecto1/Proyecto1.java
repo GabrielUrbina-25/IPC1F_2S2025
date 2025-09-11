@@ -142,9 +142,67 @@ public class Proyecto1 {
         }
         if (!encontrado) System.out.println("No se encontraron coincidencias.");
         registrarBitacora("BUSCAR", encontrado);
-}
+    }
+    static void eliminarProducto() {
+        System.out.println("\n--- Eliminar Producto ---");
+        System.out.print("Código: ");
+        String codigo = sc.nextLine().trim();
+        int idx = buscarIndiceProductoPorCodigo(codigo);
+        if (idx == -1) {
+            System.out.println("No existe ese código.");
+            registrarBitacora("ELIMINAR", false);
+            return;
+        }
+        System.out.println("¿Confirmar eliminar? (s/n): ");
+        String conf = sc.nextLine().trim().toLowerCase();
+        if (!conf.equals("s")) {
+            System.out.println("Operación cancelada.");
+            registrarBitacora("ELIMINAR", false);
+            return;
+        }
+        for (int i = idx; i < numProductos - 1; i++) {
+            inventario[i] = inventario[i + 1];
+        }
+        inventario[--numProductos] = null;
+        guardarInventario();
+        System.out.println("Producto eliminado.");
+        registrarBitacora("ELIMINAR", true);
+    }
 
+    static void registrarVenta() {
+        System.out.println("\n--- Registrar Venta ---");
+        if (numVentas >= MAX_VENTAS) {
+            System.out.println("Registro de ventas lleno.");
+            registrarBitacora("VENTA", false);
+            return;
+        }
+        System.out.print("Código del producto: ");
+        String codigo = sc.nextLine().trim();
+        int idx = buscarIndiceProductoPorCodigo(codigo);
+        if (idx == -1) {
+            System.out.println("Producto no existe.");
+            registrarBitacora("VENTA", false);
+            return;
+        }
+        System.out.print("Cantidad vendida: ");
+        int cant = leerEnteroPositivo();
+        if (cant > inventario[idx].stock) {
+            System.out.println("Stock insuficiente. Disponible: " + inventario[idx].stock);
+            registrarBitacora("VENTA", false);
+            return;
+        }
+        inventario[idx].stock -= cant;
+        double total = inventario[idx].precio * cant;
+        String fechaHora = fechaHora();
+        Venta v = new Venta(codigo, cant, fechaHora, total);
+        ventas[numVentas++] = v;
+        guardarInventario();
+        appendVentaArchivo(v);
+        System.out.printf("Venta registrada. Total: Q%.2f\n", total);
+        registrarBitacora("VENTA", true);
+    }
 
+    
     static void verDatosEstudiante() {
         System.out.println("\n--- Datos del Estudiante ---");
         System.out.println("Nombre : " + ESTUDIANTE_NOMBRE);
@@ -271,9 +329,19 @@ public class Proyecto1 {
         }
     }
 
+    static void appendVentaArchivo(Venta v) {
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter(VENTAS_FILE, true))) {
+            bw.write(v.codigoProducto + ";" + v.cantidad + ";" + v.fechaHora + ";" + v.total);
+            bw.newLine();
+        } catch (IOException e) {
+            System.out.println("Error al registrar venta: " + e.getMessage());
+        }
+    }
+
+    
     static void registrarBitacora(String tipo, boolean ok) {
         if (numBitacora >= MAX_BITACORA) return;
-        String fecha = fechaHoraHumana();
+        String fecha = fechaHora();
         String usuario = System.getProperty("user.name");
         bitacora[numBitacora++] = new BitacoraEntrada(fecha, tipo, ok, usuario);
     }
