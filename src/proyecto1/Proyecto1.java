@@ -201,6 +201,82 @@ public class Proyecto1 {
         System.out.printf("Venta registrada. Total: Q%.2f\n", total);
         registrarBitacora("VENTA", true);
     }
+    
+    static void generarReportes() {
+        String fecha = fechaHora().replace(":", "_").replace("/", "_").replace(" ", "_");
+        try {
+            System.out.println("\n--- Generación de Reportes ---");
+            String base = fechaHoraArchivo();
+            String stockOut = DATA_DIR + File.separator + base + "_Stock.txt";
+            String ventasOut = DATA_DIR + File.separator + base + "_Venta.txt";
+            boolean ok1 = generarReporteStockTXT(stockOut);
+            boolean ok2 = generarReporteVentasTXT(ventasOut);
+            if (ok1) System.out.println("Reporte de Stock -> " + stockOut);
+            if (ok2) System.out.println("Reporte de Ventas -> " + ventasOut);
+            registrarBitacora("REPORTE", ok1 && ok2);
+            Document docStock = new Document();
+            PdfWriter.getInstance(docStock, new FileOutputStream(fecha + "_Stock.pdf"));
+            docStock.open();
+            docStock.add(new Paragraph("REPORTE DE INVENTARIO"));
+            docStock.add(new Paragraph("Fecha: " + fechaHora()));
+            docStock.add(new Paragraph(" "));
+            for (int i = 0; i < numProductos; i++) {
+                docStock.add(new Paragraph(inventario[i].mostrar()));
+            }
+            docStock.close();
+            Document docVentas = new Document();
+            PdfWriter.getInstance(docVentas, new FileOutputStream(fecha + "_Venta.pdf"));
+            docVentas.open();
+            docVentas.add(new Paragraph("REPORTE DE VENTAS"));
+            docVentas.add(new Paragraph("Fecha: " + fechaHora()));
+            docVentas.add(new Paragraph(" "));
+            for (int i = 0; i < numVentas; i++) {
+                docVentas.add(new Paragraph(ventas[i].mostrar()));
+            }
+            docVentas.close();
+            System.out.println("Reportes PDF generados.");
+        }catch (Exception e) {
+            System.out.println("Error al generar reportes: " + e.getMessage());
+        }
+            registrarBitacora("REPORTE", true);
+    }
+
+    
+    static boolean generarReporteStockTXT(String ruta) {
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter(ruta))) {
+            bw.write("CODIGO | NOMBRE | CATEGORIA | PRECIO | STOCK");
+            bw.newLine();
+            for (int i = 0; i < numProductos; i++) {
+                Producto p = inventario[i];
+                bw.write(String.format("%s | %s | %s | Q%.2f | %d", p.codigo, p.nombre, p.categoria, p.precio, p.stock));
+                bw.newLine();
+            }
+        return true;
+        } catch (IOException e) {
+            System.out.println("Error al generar reporte de stock: " + e.getMessage());
+            return false;
+        }
+    }
+
+    static boolean generarReporteVentasTXT(String ruta) {
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter(ruta))) {
+            bw.write("CODIGO | CANTIDAD | FECHA_HORA | TOTAL");
+            bw.newLine();
+            double suma = 0.0;
+            for (int i = 0; i < numVentas; i++) {
+                Venta v = ventas[i];
+                bw.write(String.format("%s | %d | %s | Q%.2f", v.codigoProducto, v.cantidad, v.fechaHora, v.total));
+                bw.newLine();
+                suma += v.total;
+            }
+            bw.write(String.format("TOTAL ACUMULADO: Q%.2f", suma));
+            bw.newLine();
+            return true;
+        } catch (IOException e) {
+            System.out.println("Error al generar reporte de ventas: " + e.getMessage());
+            return false;
+        }
+    }
 
     
     static void verDatosEstudiante() {
