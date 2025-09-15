@@ -220,9 +220,9 @@ public class Proyecto1 {
             docStock.add(new Paragraph("REPORTE DE INVENTARIO"));
             docStock.add(new Paragraph("Fecha: " + fechaHora()));
             docStock.add(new Paragraph(" "));
-            for (int i = 0; i < numProductos; i++) {
-                docStock.add(new Paragraph(inventario[i].mostrar()));
-            }
+            //for (int i = 0; i < numProductos; i++) {
+               // docStock.add(new Paragraph(inventario[i].mostrar()));
+            //}
             docStock.close();
             Document docVentas = new Document();
             PdfWriter.getInstance(docVentas, new FileOutputStream(fecha + "_Venta.pdf"));
@@ -230,9 +230,9 @@ public class Proyecto1 {
             docVentas.add(new Paragraph("REPORTE DE VENTAS"));
             docVentas.add(new Paragraph("Fecha: " + fechaHora()));
             docVentas.add(new Paragraph(" "));
-            for (int i = 0; i < numVentas; i++) {
-                docVentas.add(new Paragraph(ventas[i].mostrar()));
-            }
+            //for (int i = 0; i < numVentas; i++) {
+                //docVentas.add(new Paragraph(ventas[i].mostrar()));
+            //}
             docVentas.close();
             System.out.println("Reportes PDF generados.");
         }catch (Exception e) {
