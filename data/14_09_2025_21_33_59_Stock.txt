@@ -1,3 +1,0 @@
-CODIGO | NOMBRE | CATEGORIA | PRECIO | STOCK
-001 | Pantalon | Parte Abajo | Q125.00 | 16
-002 | Blusa | Parte Arriba | Q80.00 | 100

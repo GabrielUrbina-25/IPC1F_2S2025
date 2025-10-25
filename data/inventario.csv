@@ -1,2 +1,6 @@
-001;Pantalon;Parte Abajo;125.0;16
-002;Blusa;Parte Arriba;80.0;100
+001;Pantalon;Pantalon;125.0;7
+003;Camisolas;Camisas;100.0;5
+004;Calcetines;Ropa interior;50.0;15
+005;Sueteres;Chumpas;100.0;20
+006;Corbata;Accesorio;30.0;10
+008;Camion;Juguete;24.0;20

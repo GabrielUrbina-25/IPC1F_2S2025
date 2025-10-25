@@ -1,0 +1,36 @@
+[25/10/2025 00:43:16] | ADMINISTRADOR | admin | CREAR_USUARIO | EXITOSA | Usuario creado
+[25/10/2025 00:43:16] | ADMIN | admin | CREAR_USUARIO | EXITOSA | Admin por defecto creado
+[25/10/2025 00:43:22] | ADMINISTRADOR | admin | LOGIN | EXITOSA | Inicio de sesión correcto
+[25/10/2025 00:46:39] | ADMINISTRADOR | admin | LOGIN | EXITOSA | Inicio de sesión correcto
+[25/10/2025 00:46:50] | ADMINISTRADOR | admin | LOGOUT | EXITOSA | Usuario Administrador (admin) cerró sesión
+[25/10/2025 00:47:14] | ADMINISTRADOR | admin | LOGIN | EXITOSA | Inicio de sesión correcto
+[25/10/2025 00:47:28] | VENDEDOR | 1 | CREAR_USUARIO | EXITOSA | Usuario creado
+[25/10/2025 00:47:39] | VENDEDOR | 2 | CREAR_USUARIO | EXITOSA | Usuario creado
+[25/10/2025 00:47:43] | VENDEDOR | 2 | ELIMINAR_USUARIO | EXITOSA | Usuario eliminado
+[25/10/2025 00:49:41] | ADMIN | admin | CREAR_PRODUCTO | EXITOSA | 01
+[25/10/2025 00:49:41] | ADMIN | admin | ACTUALIZAR_PRECIO | EXITOSA | 01->100.0
+[25/10/2025 00:50:16] | ADMINISTRADOR | admin | LOGOUT | EXITOSA | Usuario Administrador (admin) cerró sesión
+[25/10/2025 00:50:19] | VENDEDOR | 1 | LOGIN | EXITOSA | Inicio de sesión correcto
+[25/10/2025 00:50:34] | USUARIO | 1 | AGREGAR_STOCK | EXITOSA | Stock actualizado: Producto 01, Usuario 1, Antes=0, Cambio=+50, Ahora=50
+[25/10/2025 00:50:34] | VENDEDOR | 1 | AGREGAR_STOCK_UI | EXITOSA | Agregar stock formulario: 01 Cant=50
+[25/10/2025 00:51:10] | CLIENTE | 001 | CREAR_USUARIO | EXITOSA | Usuario creado
+[25/10/2025 00:51:20] | VENDEDOR | 1 | LOGOUT | EXITOSA | Usuario Gabriel Urbina (1) cerró sesión
+[25/10/2025 00:51:26] | CLIENTE | 001 | LOGIN | EXITOSA | Inicio de sesión correcto
+[25/10/2025 00:51:35] | USUARIO | 001 | AGREGAR_STOCK | EXITOSA | Stock actualizado: Producto 01, Usuario 001, Antes=50, Cambio=-20, Ahora=30
+[25/10/2025 00:51:35] | CLIENTE | 001 | RESERVAR_STOCK | EXITOSA | Reserva: Cliente 001, Producto 01, Cantidad=20
+[25/10/2025 00:51:35] | CLIENTE | 001 | AGREGAR_CARRITO | EXITOSA | Cliente 001 agregó Producto 01 Cant=20 al carrito
+[25/10/2025 00:51:47] | USUARIO | 001 | AGREGAR_STOCK | EXITOSA | Stock actualizado: Producto 01, Usuario 001, Antes=30, Cambio=+10, Ahora=40
+[25/10/2025 00:51:47] | CLIENTE | 001 | LIBERAR_STOCK | EXITOSA | Ajuste carrito (editor): Cliente 001 liberó 10 de 01
+[25/10/2025 00:51:49] | CLIENTE | 001 | REALIZAR_PEDIDO | EXITOSA | Pedido PE-001 creado por Cliente 001 - Total: 1000.00, Productos: 1
+[25/10/2025 00:51:50] | CLIENTE | 001 | CREAR_PEDIDO | EXITOSA | Pedido PE-001 creado desde carrito - Total: 1000.00
+[25/10/2025 00:51:52] | CLIENTE | 001 | LOGOUT | EXITOSA | Usuario Juan (001) cerró sesión
+[25/10/2025 00:51:57] | SISTEMA | 01 | LOGIN | FALLIDA | Usuario no encontrado
+[25/10/2025 00:52:05] | ADMINISTRADOR | admin | LOGIN | EXITOSA | Inicio de sesión correcto
+[25/10/2025 00:52:17] | VENDEDOR | 1 | ACTUALIZAR_USUARIO | EXITOSA | Usuario actualizado
+[25/10/2025 00:52:19] | ADMINISTRADOR | admin | LOGOUT | EXITOSA | Usuario Administrador (admin) cerró sesión
+[25/10/2025 00:52:22] | VENDEDOR | 1 | LOGIN | EXITOSA | Inicio de sesión correcto
+[25/10/2025 00:52:26] | VENDEDOR | 1 | INCREMENTAR_VENTAS | EXITOSA | +1
+[25/10/2025 00:52:26] | VENDEDOR | 1 | CONFIRMAR_PEDIDO | EXITOSA | Pedido PE-001 confirmado por Vendedor 1 - Total: 1000.00, Productos: 1
+[25/10/2025 00:52:40] | VENDEDOR | 1 | LOGOUT | EXITOSA | Usuario Gabriel Urbina (1) cerró sesión
+[25/10/2025 00:52:45] | ADMINISTRADOR | admin | LOGIN | EXITOSA | Inicio de sesión correcto
+[25/10/2025 00:52:51] | ADMINISTRADOR | admin | LOGOUT | EXITOSA | Usuario Administrador (admin) cerró sesión

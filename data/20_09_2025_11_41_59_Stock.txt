@@ -1,0 +1,6 @@
+CODIGO | NOMBRE | CATEGORIA | PRECIO | STOCK
+001 | Pantalon | Pantalon | Q125.00 | 7
+003 | Camisolas | Camisas | Q100.00 | 5
+004 | Calcetines | Ropa interior | Q50.00 | 15
+005 | Sueteres | Chumpas | Q100.00 | 20
+006 | Corbata | Accesorio | Q30.00 | 10

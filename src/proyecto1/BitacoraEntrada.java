@@ -14,7 +14,7 @@ public class BitacoraEntrada {
     public boolean correcta;
     public String usuario;
 
-    public BitacoraEntrada(String fechaHora, String tipoAccion, boolean correcta, String usuario) {
+    public BitacoraEntrada(String tipoAccion, boolean correcta, String fechaHora, String usuario) {
         this.fechaHora = fechaHora;
         this.tipoAccion = tipoAccion;
         this.correcta = correcta;
@@ -23,7 +23,7 @@ public class BitacoraEntrada {
 
     @Override
     public String toString() {
-        return String.format("%s | %s | %s | %s", fechaHora, tipoAccion, (correcta ? "OK" : "ERROR"), usuario);
+        return String.format("%s | %s | %s | %s", tipoAccion, (correcta ? "OK" : "ERROR"), fechaHora, usuario);
     }
 
 }

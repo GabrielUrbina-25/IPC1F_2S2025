@@ -16,13 +16,13 @@ import java.io.FileOutputStream;
 import java.time.LocalDateTime;
 
 public class Proyecto1 {
-    static final int MAX_PRODUCTOS = 200;
-    static final int MAX_VENTAS = 1000;
-    static final int MAX_BITACORA = 2000;
-    static final String DATA_DIR = "data";
-    static final String INVENTARIO_FILE = DATA_DIR + File.separator + "inventario.csv";
-    static final String VENTAS_FILE = DATA_DIR + File.separator + "ventas.csv";
-    static final String BITACORA_FILE = DATA_DIR + File.separator + "bitacora.log";
+    static int MAX_PRODUCTOS = 200;
+    static int MAX_VENTAS = 1000;
+    static int MAX_BITACORA = 2000;
+    static String DATA_DIR = "data";
+    static String INVENTARIO_FILE = DATA_DIR + File.separator + "inventario.csv";
+    static String VENTAS_FILE = DATA_DIR + File.separator + "ventas.csv";
+    static String BITACORA_FILE = DATA_DIR + File.separator + "bitacora.log";
     
     static final String ESTUDIANTE_NOMBRE = "Gabriel Eduardo Urbina Sunún";
     static final String ESTUDIANTE_CARNET = "202300384";
@@ -221,7 +221,7 @@ public class Proyecto1 {
             docStock.add(new Paragraph("Fecha: " + fechaHora()));
             docStock.add(new Paragraph(" "));
             //for (int i = 0; i < numProductos; i++) {
-               // docStock.add(new Paragraph(inventario[i].mostrar()));
+               // docStock.add(new Paragraph(inventario[i]));
             //}
             docStock.close();
             Document docVentas = new Document();
@@ -231,10 +231,10 @@ public class Proyecto1 {
             docVentas.add(new Paragraph("Fecha: " + fechaHora()));
             docVentas.add(new Paragraph(" "));
             //for (int i = 0; i < numVentas; i++) {
-                //docVentas.add(new Paragraph(ventas[i].mostrar()));
+                //docVentas.add(new Paragraph(ventas[i]));
             //}
             docVentas.close();
-            System.out.println("Reportes PDF generados.");
+            System.out.println("Reportes TXT generados.");
         }catch (Exception e) {
             System.out.println("Error al generar reportes: " + e.getMessage());
         }
@@ -419,7 +419,7 @@ public class Proyecto1 {
         if (numBitacora >= MAX_BITACORA) return;
         String fecha = fechaHora();
         String usuario = System.getProperty("user.name");
-        bitacora[numBitacora++] = new BitacoraEntrada(fecha, tipo, ok, usuario);
+        bitacora[numBitacora++] = new BitacoraEntrada(tipo, ok, fecha, usuario);
     }
 
     static void guardarBitacoraArchivo() {
